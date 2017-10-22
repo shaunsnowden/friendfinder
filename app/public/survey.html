@@ -21,7 +21,7 @@
 	<!-- Compiled and minified Materialize JavaScript -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
           
-	<link rel="stylesheet" href="css/style.css">
+	<!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 
 <body>
@@ -29,11 +29,11 @@
         <nav>
           <div class="nav-wrapper blue-grey darken-4">
               
-            <a href="home.html" class="brand-logo" id="logo"><i class="fa fa-snowflake-o" aria-hidden="true" id=logo-icon></i>  SNOWSTORM FRIEND FINDER </a>
+            <a href="/" class="brand-logo" id="logo"><i class="fa fa-snowflake-o" aria-hidden="true" id=logo-icon></i>  SNOWSTORM FRIEND FINDER </a>
             <ul class="right hide-on-med-and-down" id="head-nav-links">
-              <li><a href="survey.html">Survey</a></li>
+              <li><a href="/survey">Survey</a></li>
               <li><a href="/api/friends">API Friends List</a></li>
-              <li><a href="https://github.com/shaunsnowden/friend-finder">GitHub Repo</a></li>
+              <li><a href="https://github.com/shaunsnowden/friendfinder">GitHub Repo</a></li>
             </ul>
           </div>
         </nav>
@@ -273,7 +273,7 @@
 					$('#question10').val().trim()
 				]
 			};
-			// console.log('userInput = ' + JSON.stringify(userInput));
+			console.log('userInput = ' + JSON.stringify(userInput));
 			// Add user inputs to friends list
 			$.post('/api/friends', userInput)
       		.done(function(data) {

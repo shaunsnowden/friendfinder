@@ -5,45 +5,53 @@ const express = require('express')
 const app = express()
 var PORT = process.env.PORT || 8080;
 
-app.get('/', function(req, res){
-  // res.send('Let\'s find frinds!!');
-});
-
-
 // Import friends
 var friends = require('../data/friends.js');
 
+
 // Export API Routes
 module.exports = function(app){
-  console.log('api routes imports');
 
-  app.get('api/friends', function(req, res){
-      res.json(friends);
+  app.get('/', function(req, res){
+    // res.send('Let\'s find frinds!!');
   });
 
-  // Add a new friend 
-  app.post('/api/friends', function(req, res){
-    var userInput = req.body;
-    console.log('userInput: ' + JSON.stringify(userInput));
 
-    var userResponses = userInput.scores;
-    console.log('userResponses: ' + JSON.stringify(userResponses));
+    console.log('api routes imports');
 
-    //Computation of math
-    var matchName = '';
-    var matchImg = '';
-    
-    // Initial difference
-    var friendMatch = 1000;
+    app.get('/api/friends', function(req, res){
+        res.json(friends);
+    });
 
-    for (var i = 0; i < friends.length; i++){
+    // Add a new friend 
+    app.post('/api/friends', function(req, res){
+      var userInput = req.body;
+      console.log('userInput: ' + JSON.stringify(userInput));
 
-    }
+      var userResponses = userInput.scores;
+      console.log('userResponses: ' + JSON.stringify(userResponses));
 
+      //Computation of math
+      var matchName = '';
+      var matchImg = '';
+      
+      // Initial difference
+      var friendMatch = 1000;
 
-  })
-}
+      for (var i = 0; i < friends.length; i++){
 
-app.listen(PORT, function(){
-  console.log("App is listening on PORT: " + PORT);
-});
+        var indvMatchDiff = 0;
+        for (var n = 0; n<userResponses.length; n++){
+          indvMatchDiff += Math.abs(friend[i].scores[n]-userResponses[n]);
+          console.log(indvMatchDiff);
+        }
+        if(indvMatchDiff<friendMatch){
+          friendMatch=indvMatchDiff;
+          matchName=friends[i].name;
+          matchImg=friends[i].photo;
+        }
+      };
+      console.log(`Friend Match Difference: ${friendMatch}`);
+      console.log(`Friend Match Name: ${matchName}`);
+    });
+};

@@ -5,6 +5,9 @@ const express = require('express')
 const app = express()
 var PORT = process.env.PORT || 8080;
 
-app.get('/', function(req, res){
-  res.send('Let\'s find frinds!!');
+require("./app/routing/htmlRoutes")(app);
+require("./app/routing/apiRoutes")(app);
+
+app.listen(PORT, function(){
+  console.log("App is listening on PORT: " + PORT);
 });
