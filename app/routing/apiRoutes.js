@@ -42,7 +42,7 @@ module.exports = function(app){
 
         var indvMatchDiff = 0;
         for (var n = 0; n<userResponses.length; n++){
-          indvMatchDiff += Math.abs(friend[i].scores[n]-userResponses[n]);
+          indvMatchDiff += Math.abs(friends[i].scores[n]-userResponses[n]);
           console.log(indvMatchDiff);
         }
         if(indvMatchDiff<friendMatch){
@@ -51,7 +51,15 @@ module.exports = function(app){
           matchImg=friends[i].photo;
         }
       };
+
+      // Debug Statements
       console.log(`Friend Match Difference: ${friendMatch}`);
       console.log(`Friend Match Name: ${matchName}`);
+
+      //Add user to fiends.js array
+      friends.push(userInput);
+
+      //Send response back to clientside UI
+      res.json({status: 'OK', matchName: matchName, matchImage: matchImg});
     });
 };
